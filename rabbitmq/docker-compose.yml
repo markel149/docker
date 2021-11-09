@@ -1,15 +1,14 @@
 version: '3'
 services:
   rabbitmq:
-    image: rabbitmq
-    environment:
-      VAULT_LOCAL_CONFIG: '${VAULT_LOCAL_CONFIG}'
-      VAULT_API_ADDR: '${VAULT_API_ADDR}'
+    build: . 
+          #    environment:
     volumes:
-      - ./vault_certs:/vault/tls
-      - ./vault_data:/vault/data
+      - ./config/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
+      - ./certs/:/etc/rabbitmq/certs/
     ports:
-      - ${VAULT_PORT}:${VAULT_PORT}
-    command: vault server -config /vault/config
-    cap_add:
-      - IPC_LOCK
+      - 5672:5672
+      - 15672:15672  
+      - 5671:5671
+      - 61613:61613
+      - 15671:15671
