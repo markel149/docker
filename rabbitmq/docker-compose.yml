@@ -7,8 +7,6 @@ services:
       - ./config/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
       - ./certs/:/etc/rabbitmq/certs/
     ports:
-      - 5672:5672
-      - 15672:15672  
       - 5671:5671
-      - 61613:61613
+      - 61614:61614
       - 15671:15671
