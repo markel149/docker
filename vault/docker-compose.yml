@@ -1,0 +1,13 @@
+  vault:
+    image: vault:1.7.3
+    environment:
+      VAULT_LOCAL_CONFIG: '${VAULT_LOCAL_CONFIG}'
+      VAULT_API_ADDR: '${VAULT_API_ADDR}'
+    volumes:
+      - ./vault_certs:/vault/tls
+      - ./vault_data:/vault/data
+    ports:
+      - ${VAULT_PORT}:${VAULT_PORT}
+    command: vault server -config /vault/config
+    cap_add:
+      - IPC_LOCK
