@@ -1,13 +1,15 @@
 version: '3'
 services:  
   vault:
+    container_name: vault
     image: vault:1.7.3
     environment:
       VAULT_LOCAL_CONFIG: '${VAULT_LOCAL_CONFIG}'
       VAULT_API_ADDR: '${VAULT_API_ADDR}'
+      VAULT_ADDR: 'http://0.0.0.0:8200'
     volumes:
       - ./vault_certs:/vault/tls
-      - ./vault_data:/vault/data
+      - ./vault_data:/vault/file
     ports:
       - ${VAULT_PORT}:${VAULT_PORT}
     command: vault server -config /vault/config

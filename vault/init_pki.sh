@@ -1,11 +1,15 @@
 #!/bin/bash
 
+# Script variables
+vault=localhost
 
 # Initialize vault
-curl http://127.0.0.1:8200/v1/sys/init
+docker exec vault vault operator init > ./credentials
 
-
-
+# Unsealt vault
+cat credentials | grep "Unseal Key 1"| cut -d ":" -f2 | xargs
+cat credentials | grep "Unseal Key 2"| cut -d ":" -f2 | xargs
+cat credentials | grep "Unseal Key 3"| cut -d ":" -f2 | xargs
 
 
 
