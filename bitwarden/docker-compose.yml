@@ -1,0 +1,12 @@
+version: '3'
+services:
+  bitwarden:
+    image: bitwardenrs/server
+    restart: always
+    ports:
+      - 8687:80
+    volumes:
+      - C:\Users\morallo\Documents\bw-data:/data
+    environment:
+      WEBSOCKET_ENABLED: 'true' # Required to use websockets
+      SIGNUPS_ALLOWED: 'false'   # set to false to disable signups
