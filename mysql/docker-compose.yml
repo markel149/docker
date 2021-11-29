@@ -1,12 +1,16 @@
 
 version: '3'
 services:  
-  vault:
+  mysql:
     container_name: mysql
     image: mysql
     environment:
       MYSQL_ROOT_PASSWORD: 'rootpassword'
+      ALLOW_EMPTY_PASSWORD: 'yes'
     volumes:
-      - ./conf.d:/etc/mysql/conf.d
+# Descomentar linea para carga custom config
+#      - ./conf.d:/etc/mysql/conf.d
+      - ./storage:/var/lib/mysql
     ports:
       - 3306:3306
+
