@@ -1,0 +1,9 @@
+
+version: '3'
+services:  
+  keycloak:
+    container_name: keycloak
+    image: keycloak
+    environment:
+    volumes:
+    ports:

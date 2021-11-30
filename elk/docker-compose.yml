@@ -1,0 +1,14 @@
+version: '3'
+services:  
+  elastic:
+    container_name: elastic
+    image: docker.elasticsearch.co/elasticsearch/elasticsearch:latest
+    environment:
+    volumes:
+    ports:
+  kibana:
+    container_name:
+    image:
+    enviroment:
+    volumes:
+    ports
