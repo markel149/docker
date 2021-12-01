@@ -1,8 +1,20 @@
 version: '3'
-services:  
-  consul:
-    container_name: consul
-    image: consul
-    environment:
+services:
+  consul-server:
+    image: consul:1.9
+    environment: 
+      CONSUL_LOCAL_CONFIG: '${CONSUL_LOCAL_CONFIG}'
     volumes:
+      - ./data:/consul/data
+      - ./config:/consul/config
+# For SSL configuration        
+#      - './lamassu/consul-server_certs:/consul/data/tls'
     ports:
+      - ${CONSUL_PORT}:${CONSUL_PORT}
+      - ${CONSUL_HTTPS_PORT}:${CONSUL_HTTPS_PORT}
+      - ${CONSUL_UDP_PORT}:${CONSUL_UDP_PORT}/udp
+    command: consul agent -server -ui -client=0.0.0.0 -bootstrap-expect=1 -data-dir /consul/data -config-dir /consul/config
+  nginx:
+    image: nginx:latest
+    ports:
+      - 8080:80
