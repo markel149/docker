@@ -1,0 +1,11 @@
+version: '3'
+services:  
+  metricbeat:
+    container_name: nodered
+    image: nodered/node-red
+    ports:
+      - 1880:1880
+#    environment:
+#      output.elasticsearch.hosts: ["192.168.50.10:9200"]
+    volumes:
+      - "./data:/data"
